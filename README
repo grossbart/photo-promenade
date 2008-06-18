@@ -5,7 +5,7 @@ Photo Promenade aims to be an easy to install and use photo gallery script for P
 
 Peter Gassner
 peter@naehrstoff.ch
-http://www.naehrstoff.ch/code/mbm
+http://www.naehrstoff.ch/code/photo-promenade
 
 
 2. INSTALLATION
@@ -13,28 +13,23 @@ http://www.naehrstoff.ch/code/mbm
 
 1. Copy everything to your server.
 2. Add albums by creating folders with photos in the `albums` folder.
-3. Point your browser to Photo Promenade's index.php and it will list all albums and create thumbnails automatically.
+3. Point your browser to Photo Promenade's `index.php` and it will list all albums and create thumbnails automatically.
 
 
 3. CONFIGURATION
 =======================================================
 
-Title and Subtitle
-------------------
-
-Adjust the `title` and `subtitle` parameters in the `index.php` configuration section.
+You can adjust the default settings in `config.yml`.
 
 
 Thumbnail Sizes
 ---------------
 
-Adjust the `sizes` parameter in the `index.php` configuration section. It will accept an array with title/dimension pairs.
+To set the size of your thumbnails and previews, adjust the `sizes` parameter in the `config.yml` file using the following guidelines:
 
-Specify desired thumbnail sizes as follows:
-
-* `array('big' => '600')` will resize all images to a width of `600px` (keeping the aspect ratio) and places them into `/albums/your_album/big/` so you can access them in your layouts.
-* `array('big' => 'x480')` will resize all images to a height of `480px`.
-* `array('big' => '600x480')` will resize all images to fit within the specified dimensions (keeping the aspect ratio).
+* `big: 600x480` will resize all images to fit within the specified dimensions (keeping the aspect ratio).
+* `big: 600` will resize all images to a width of `600px` (keeping the aspect ratio) and places them into `/albums/your_album/big/` so you can access them in your layouts.
+* `big: x480` will resize all images to a height of `480px`.
 
 Layouts
 -------
