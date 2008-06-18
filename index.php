@@ -1,5 +1,29 @@
 <?php
 
+/**
+ *
+ *  PHOTO PROMENADE
+ *  
+ *  Copyright 2008 Peter Gassner
+ *  http://www.naehrstoff.ch/
+ *
+ *  Version 1.0, 2008/06/18
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
 /* Includes
 ------------------------------------------------ */
 require_once('inc/system.inc');
@@ -14,7 +38,7 @@ require_once('inc/image.inc');
  */
 
 $params = array('sizes'      => array('big' => 'x480', 'thumb' => 'x80'),
-                'title'      => 'Microgallery',
+                'title'      => 'Photo Promenade',
                 'subtitle'   => 'A tiny PHP photo gallery.',
                 'album_root' => filesystem_base_path() . 'albums/');
 

@@ -1,0 +1,48 @@
+1. BACKGROUND
+=======================================================
+
+Photo Promenade aims to be an easy to install and use photo gallery script for PHP. Uploading the photos is done via FTP, but from there on the script takes over and automatically creates the navigation and thumbnails. The layout of the gallery can be easily adjusted to one's needs via HTML, PHP and CSS.
+
+Peter Gassner
+peter@naehrstoff.ch
+http://www.naehrstoff.ch/code/mbm
+
+
+2. INSTALLATION
+=======================================================
+
+1. Copy everything to your server.
+2. Add albums by creating folders with photos in the `albums` folder.
+3. Point your browser to Photo Promenade's index.php and it will list all albums and create thumbnails automatically.
+
+
+3. CONFIGURATION
+=======================================================
+
+Title and Subtitle
+------------------
+
+Adjust the `title` and `subtitle` parameters in the `index.php` configuration section.
+
+
+Thumbnail Sizes
+---------------
+
+Adjust the `sizes` parameter in the `index.php` configuration section. It will accept an array with title/dimension pairs.
+
+Specify desired thumbnail sizes as follows:
+
+* `array('big' => '600')` will resize all images to a width of `600px` (keeping the aspect ratio) and places them into `/albums/your_album/big/` so you can access them in your layouts.
+* `array('big' => 'x480')` will resize all images to a height of `480px`.
+* `array('big' => '600x480')` will resize all images to fit within the specified dimensions (keeping the aspect ratio).
+
+Layouts
+-------
+
+Photo Promenade uses three layouts: 
+
+* _Index_ is being used as the starting point, it lists all albums.
+* _Album_ displays the thumbnails of an album with links to their bigger previews.
+* _Error_ is displayed when a script error occured.
+
+You can adjust these layouts as you wish.
