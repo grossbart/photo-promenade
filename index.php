@@ -28,6 +28,7 @@
 ------------------------------------------------ */
 require_once('inc/system.inc');
 require_once('inc/image.inc');
+require_once('inc/spyc.php');
 
 
 /**
@@ -36,11 +37,9 @@ require_once('inc/image.inc');
  *  Resize to height: 'big' => 'x480'
  *  Resize to fit:    'big' => '600x480'
  */
-
-$params = array('sizes'      => array('big' => 'x480', 'thumb' => 'x80'),
-                'title'      => 'Photo Promenade',
-                'subtitle'   => 'A tiny PHP photo gallery.',
-                'album_root' => filesystem_base_path() . 'albums/');
+ 
+$params = array('album_root' => filesystem_base_path() . 'albums/');
+$params = array_merge($params, Spyc::YAMLLoad('config.yml'));
 
 
 /* Handle request
