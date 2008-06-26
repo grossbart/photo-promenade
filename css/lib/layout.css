@@ -1,0 +1,151 @@
+@charset "UTF-8";
+/*
+Layout Styles
+Description:	Layout and Element specific styling
+Author:				Benjamin Wiederkehr
+Start:				08-01-18
+Last update:	08-05-08
+
+/* Body
+/////////////////////////////////////////////////////////////////*/
+body					{ background: #FFF;}
+/* Container
+/////////////////////////////////////////////////////////////////*/
+#container		{ position: relative; width: 840px; margin: 0 auto; padding-top: 40px;}
+#container.album{
+	/*background: #f6f6f6 url('../../img/galleria_bg.gif') repeat-y;*/
+	border-bottom: 1px solid #ccc;
+}
+/* Header
+/////////////////////////////////////////////////////////////////*/
+#header			{ position: fixed; top: 0; height: 40px; width: 840px; text-align: center; background: #fff;}
+#controls		{ margin: 0 auto; width: 138px; position: relative; top: 10px;}
+#controls span.btn a{
+	text-indent: -9999px;
+	display: block;
+	float: left;
+	height: 22px;
+	background-image: url('../../img/nav_icon.png');
+	background-color: #aaa;
+}
+#controls span.btn a:hover{background-color: #3cf;}
+#controls span#prev a			{ width: 38px; background-position: 0 0;}
+#controls span#home a			{ width: 31px; background-position: -38px 0;}
+#controls span#overview a	{ width: 33px; background-position: -69px 0;}
+#controls span#next a			{ width: 36px; background-position: -102px 0;}
+/* jcarousel
+/////////////////////////////////////////////////////////////////*/
+.jcarousel-container {
+	position: relative;
+	padding: 20px;
+	border: 1px solid #ccc;
+	background: #f6f6f6;
+}
+.jcarousel-clip {
+	width: 800px;
+	z-index: 2;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+}
+.jcarousel-list {
+	z-index: 1;
+	overflow: hidden;
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+.jcarousel-item {
+	float: left;
+	list-style: none;
+	/* We set the width/height explicitly. No width/height causes infinite loops. */
+	width: 90px;
+	height: 90px;
+}
+.jcarousel-next,
+.jcarousel-prev {
+	z-index:3;
+}
+.jcarousel-next-horizontal,
+.jcarousel-prev-horizontal{
+	cursor:pointer;
+	height: 22px;
+	position: absolute;
+	top: 50px;
+}
+.jcarousel-prev-horizontal{
+	background:#aaa url('../../img/nav_icon.png') no-repeat 0 0pt;
+	width:38px;
+	left: -38px;
+}
+.jcarousel-next-horizontal {
+	background:#aaa url('../../img/nav_icon.png') no-repeat -102px 0pt;
+	width:36px;
+	right: -36px;
+}
+.jcarousel-next-horizontal:hover,
+.jcarousel-prev-horizontal:hover{ background-color: #3cf;}
+.jcarousel-next-disabled,
+.jcarousel-prev-disabled,
+.jcarousel-next-disabled:hover,
+.jcarousel-prev-disabled:hover{
+	cursor: default;
+	background-color: #ddd;
+}
+/* galleria
+/////////////////////////////////////////////////////////////////*/
+.galleria_container	{
+	clear: left;
+	line-height: 1;
+	padding-bottom: 10px;
+	width: 840px;
+	background: #fff;
+}
+.galleria li{
+	width:80px;
+	height:80px;
+	overflow:hidden;
+	background: #eee;
+	margin-right:10px;
+}
+.galleria li a			{display:none}
+.galleria li div		{position:absolute;display:none;top:0;left:180px}
+.galleria li div img{cursor:pointer;}
+.galleria li.active div img,.galleria li.active div{display:block}
+.galleria li img.thumb{cursor:pointer;top:auto;left:auto;display:block;width:auto;height:auto}
+.galleria li .caption	{display:block;padding-top:.5em}
+* html .galleria li div span{width:400px} /* MSIE bug */
+.clear{clear: both;}
+/* Content
+/////////////////////////////////////////////////////////////////*/
+ul.album_list	{
+	list-style: none;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 1em 0 2em 0;
+	margin: 0 0 1em 0;
+}
+ul.album_list li{
+	float: left;
+	width: 70px; height: 60px;
+	margin: 0 10px 10px 0;
+	padding: 5px 5px 30px 5px;
+	background: #fff;
+	border: 1px solid #ccc; border-bottom: 2px solid #ccc;
+}
+ul.album_list li a{
+	display: block;
+	width: 65px;
+	height: 65px;
+	background: #ddd;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 2px;
+	line-height: 1;
+}
+ul.album_list li a:hover{
+	background: #3cf;
+}
