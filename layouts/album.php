@@ -10,7 +10,7 @@
 	<meta name="Robots"	content="ALL" />
 	<meta name="Keywords"	content="_KEYWORDS_" />
 	<meta name="Description"	content="_DESCRIPTION_" />
-	<meta name="Author"	content="Peter Gassner / Naehrstoff.ch" />
+	<meta name="Author"	content="<?php echo $params['author']?>" />
 	<meta name="Copyright"	content="<?php echo date(); ?> " />
 	<!-- ——————————————————————————————————————————————————————————————————— FAVICON -->
 	<link rel="shortcut icon"	href="img/favicon.ico"	type="image/x-icon" />

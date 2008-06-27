@@ -55,7 +55,11 @@ function get_files($path) {
 function l($title, $target, $options = array()) {
   // URL Optionen prüfen
   //if ($request == $target) $options['class'] = 'active';
-  $options['href'] = base_path() . '?q=' . $target;
+  if (MOD_REWRITE) {
+    $options['href'] = base_path() . $target;
+  } else {
+    $options['href'] = base_path() . '?q=' . $target;
+  }
 
   // Link ausgeben
   return '<a '.join_pairs($options).'>'.$title.'</a>';

@@ -31,15 +31,16 @@ require_once('inc/image.inc');
 require_once('inc/spyc.php');
 
 
-/**
- *  Size Configuration
- *  Resize to width:  'big' => '600'
- *  Resize to height: 'big' => 'x480'
- *  Resize to fit:    'big' => '600x480'
- */
- 
 $params = array('album_root' => filesystem_base_path() . 'albums/');
 $params = array_merge($params, Spyc::YAMLLoad('config.yml'));
+
+/* Rewrite URLs
+------------------------------------------------ */
+if ($params['nice_urls']) {
+  define('MOD_REWRITE', TRUE);
+} else {
+  define('MOD_REWRITE', FALSE);
+}
 
 
 /* Handle request

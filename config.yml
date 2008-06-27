@@ -8,6 +8,7 @@
 
 title: Photo Promenade
 subtitle: A tiny PHP photo gallery
+author: Peter Gassner, Benjamin Wiederkehr
 
 #
 # Define the desired output sizes.
@@ -15,14 +16,18 @@ subtitle: A tiny PHP photo gallery
 # The default sizes used by Photo Promenade are called "big" and "thumb",
 # but you can create more named sizes if you want to.
 #
-# Sizes are specified textually using a "width x height" syntax. Aspect 
-# ratios are always kept intact.
-#
-# 640x480  will resize images to fit within these dimensions
-#     640  will resize them to a fixed width of 640 pixels and a variable height
-#    x480  will resize them to a fixed height of 480 pixels and a variable height
+# Sizes can be specified using either width or height or both.
+# The aspect ratio will be kept.
 #
 
 sizes:
-  big: x480
-  thumb: x80
+  big:
+    height: 480
+  thumb:
+    height: 80
+
+#
+# If you have mod-rewrite, you can uncomment this line
+# to get nice URLs.
+
+nice_urls: true

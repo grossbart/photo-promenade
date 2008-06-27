@@ -6,23 +6,8 @@
  
 function scale($source, $target, $size) {
 
-   // Dissect filename to find dimension information
-   if (preg_match('#^([0-9]+)x?$#i', $size, $match)) {
-       // Resize to width: 600 or 600x
-       $width = (int)$match[1];
-       $height = -1;
-   } else if (preg_match('#^x([0-9]+)$#i', $size, $match)) {
-       // Resize to height: x480
-       $width = -1;
-       $height = (int)$match[1];
-   } else if (preg_match('#^([0-9]+)x([0-9]+)$#i', $size, $match)) {
-       // Resize to fit: 600x480
-       $width = (int)$match[1];
-       $height = (int)$match[2];
-   } else {
-       // no resizing, fail silently
-       return FALSE;
-   }
+  $width = $size['width'] ? $size['width'] : -1;
+  $height = $size['height'] ? $size['height'] : -1;
 
    if (gd_available()) {
        image_scale($source, $target, $width, $height);
