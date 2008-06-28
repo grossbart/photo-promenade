@@ -1,14 +1,23 @@
 <?php
 /**
- *  Helferfunktionen für Microgallery
- *  Peter Gassner 2008
- *  peter@naehrstoff.ch
+ * Photo Promenade -- a tiny PHP photo gallery
+ * Helpers
+ * @author Peter Gassner <peter@naehrstoff.ch>
+ * @link http://www.naehrstoff.ch/code/photo-promenade
+ * @copyright Copyright 2008 Peter Gassner
+ * @license http://www.opensource.org/licenses/gpl-3.0.html GPLv3
+ * @package PhotoPromenade
  */
  
+
 function render($layout) {
   global $params;
   $params['layout'] = $layout;
-  include_once("layouts/layout.php");
+  if (is_file("layouts/$layout/layout.php")) {
+    include_once("layouts/$layout/layout.php");
+  } else {
+    include_once("layouts/layout.php");
+  }
 }
 
 function yield($name) {
@@ -78,5 +87,26 @@ function parse_file($filepath, $params = array()) {
     return $file_content;
   } else {
     return FALSE;
+  }
+}
+
+
+/* Resizing
+------------------------------------------------ */
+function resize_folder($album_path, $sizes) {
+  global $params;
+  if (is_dir($album_path)) {
+    $originals = get_files($album_path);
+    foreach($sizes as $name => $size) {
+      $resized_album_path = $album_path.$name.'/';
+      if (!is_dir($resized_album_path)) mkdir($resized_album_path, 0755);
+      foreach($originals as $photo) {
+        scale("$album_path/$photo", "$resized_album_path/$photo", $size);
+      }
+    }
+  } else {
+    $params['flash'] = "Resizing the images in <code>$album_path</code> failed. Could there be a permission problem?";
+    render('error');
+    exit();
   }
 }

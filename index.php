@@ -60,27 +60,3 @@ if (array_key_exists('album', $params)) {
 } else {
   render('index');
 }
-
-
-
-
-
-/* Resizing
------------------------------------------------- */
-function resize_folder($album_path, $sizes) {
-  global $params;
-  if (is_dir($album_path)) {
-    $originals = get_files($album_path);
-    foreach($sizes as $name => $size) {
-      $resized_album_path = $album_path.$name.'/';
-      if (!is_dir($resized_album_path)) mkdir($resized_album_path, 0755);
-      foreach($originals as $photo) {
-        scale("$album_path/$photo", "$resized_album_path/$photo", $size);
-      }
-    }
-  } else {
-    $params['flash'] = "Resizing the images in <code>$album_path</code> failed. Could there be a permission problem?";
-    render('error');
-    exit();
-  }
-}
