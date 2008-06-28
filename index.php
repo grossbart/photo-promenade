@@ -1,26 +1,13 @@
 <?php
-
 /**
- *
- *  PHOTO PROMENADE
- *  
- *  Copyright 2008 Peter Gassner
- *  http://www.naehrstoff.ch/
- *
- *  Version 1.0, 2008/06/18
- *  
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *  
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *  
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Photo Promenade -- a tiny PHP photo gallery
+ * @version 1.1
+ * @author Peter Gassner <peter@naehrstoff.ch>
+ * @author Benjamin Wiederkehr <benjamin.wiederkehr@artillery.ch>
+ * @link http://www.naehrstoff.ch/code/photo-promenade
+ * @copyright Copyright 2008 Peter Gassner
+ * @license http://www.opensource.org/licenses/gpl-3.0.html GPLv3
+ * @package PhotoPromenade
  */
 
 
@@ -31,8 +18,16 @@ require_once('inc/image.inc');
 require_once('inc/spyc.php');
 
 
-$params = array('album_root' => filesystem_base_path() . 'albums/');
-$params = array_merge($params, Spyc::YAMLLoad('config.yml'));
+/* Define Filesystem Anchors
+------------------------------------------------ */
+define('APP_ROOT', dirname(__FILE__));
+define('ALBUMS_ROOT', dirname(__FILE__) . '/albums/');
+
+
+/* Load Configuration
+------------------------------------------------ */
+$params = Spyc::YAMLLoad('config.yml');
+
 
 /* Rewrite URLs
 ------------------------------------------------ */
@@ -47,8 +42,9 @@ if ($params['nice_urls']) {
 ------------------------------------------------ */
 $params = array_merge($params, url_params());
 
+
 if (empty($params['controller'])) {
-  render('index', $params);
+  render('index');
 } else if (!empty($params['controller']) && empty($params['action'])) {
   $params['album_name'] = $params['controller'];
   $params['album_path'] = 'albums/' . $params['album_name'];
@@ -59,9 +55,9 @@ if (empty($params['controller'])) {
     }
   }
   
-  render('album', $params);
+  render('album');
 } else if (!empty($params['controller']) && $params['action'] == 'resize') {
-  $album_path = $params['album_root'] . $params['controller'];
+  $album_path = ALBUMS_ROOT . $params['controller'];
   resize_folder($album_path, $params['sizes']);
 }
 
@@ -71,6 +67,7 @@ if (empty($params['controller'])) {
 /* Resizing
 ------------------------------------------------ */
 function resize_folder($album_path, $sizes) {
+  global $params;
   if (is_dir($album_path)) {
     $originals = get_files($album_path);
     foreach($sizes as $name => $size) {
@@ -81,6 +78,7 @@ function resize_folder($album_path, $sizes) {
       }
     }
   } else {
+    $params['flash'] = "Resizing the images in <code>$album_path</code> failed. Could there be a permission problem?";
     render('error');
     exit();
   }

@@ -5,13 +5,26 @@
  *  peter@naehrstoff.ch
  */
  
-function render($layout, $params = array()) {
-  include_once("layouts/$layout.php");
+function render($layout) {
+  global $params;
+  $params['layout'] = $layout;
+  include_once("layouts/layout.php");
 }
+
+function yield($name) {
+  global $params;
+
+  $content = read_file('layouts/'.$params['layout'].'/'.$name.'.php');
+
+  if ($content) {
+    echo $content;
+  }
+}
+
 
 function url_params() {
   $params = array('controller' => '', 'action' => '');
-  if ($_GET['q']) {
+  if (array_key_exists('q', $_GET)) {
     $args = split('/', $_GET['q']);
     if (count($args) > 0 && $args[0]) $params['controller'] = $args[0];
     if (count($args) > 1 && $args[1]) $params['action'] = $args[1];
@@ -71,4 +84,20 @@ function join_pairs($pairs) {
     $output .= $key .'="'.$value.'" ';
   }
   return $output;
+}
+
+
+function read_file($filepath) {
+  global $params;
+  $filepath = APP_ROOT . '/' .$filepath;
+
+  if (is_file($filepath)) {
+    ob_start();
+    include $filepath;
+    $file_content = ob_get_contents();
+    ob_end_clean();
+    return $file_content;
+  } else {
+    return FALSE;
+  }
 }

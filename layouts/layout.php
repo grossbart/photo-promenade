@@ -10,17 +10,20 @@
 	<meta name="Robots"	content="ALL" />
 	<meta name="Keywords"	content="_KEYWORDS_" />
 	<meta name="Description"	content="_DESCRIPTION_" />
-	<meta name="Author"	content="Peter Gassner / Naehrstoff.ch" />
-	<meta name="Copyright"	content="<?php echo date(); ?> " />
+	<meta name="Author"	content="<?php echo $params['author']?>" />
+	<meta name="Copyright"	content="<?php //echo date(); ?> " />
 	<!-- ——————————————————————————————————————————————————————————————————— FAVICON -->
 	<link rel="shortcut icon"	href="img/favicon.ico"	type="image/x-icon" />
 	<link rel="icon"	href="img/favicon.ico"	type="image/x-icon" />
 	<!-- ——————————————————————————————————————————————————————————————————— CSS -->
 	<link rel="stylesheet"	href="css/base.css"	type="text/css"	media="screen" />
 	<!-- ——————————————————————————————————————————————————————————————————— JS -->
+  <?php yield('script'); ?>
 </head>
 <!-- ——————————————————————————————————————————————————————————————————— BODY -->
 <body>
-	<div id="container">
-		<h1><?php echo $params['title']?></h1>
-		<p><?php echo $params['subtitle']?></p>
+  <div id="container" class="<?php echo $params['layout'] ?>">
+    <?php yield('content'); ?>
+  </div>
+</body>
+</html>
