@@ -24,7 +24,11 @@ The default sizes used by Photo Promenade are called "big" and "thumb", but you 
 
 ### Layouts
 
-Photo Promenade uses three layouts: 
+Photo Promenade uses a simple templating system consisting of _layouts_ and _views_. The layout is the main HTML framework that wraps around the views.
+
+The main layout can be found in `/layouts/layout.php`, but you can also overwrite this on a case-by-case basis by creating a file called `/layouts/<view>/layout.php`.
+
+
 
 * _Index_ is being used as the starting point, it lists all albums.
 * _Album_ displays the thumbnails of an album with links to their bigger previews.
