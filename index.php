@@ -20,8 +20,10 @@ require_once('inc/spyc.php');
 
 /* Define Filesystem Anchors
 ------------------------------------------------ */
-define('APP_ROOT', dirname(__FILE__));
-define('ALBUMS_ROOT', dirname(__FILE__) . '/albums/');
+define('APP_ROOT', dirname(__FILE__).'/');
+define('ALBUMS_ROOT', dirname(__FILE__).'/albums/');
+define('BASE_URL', dirname($_SERVER['PHP_SELF']).'/');
+define('ALBUMS_URL', 'albums/');
 
 
 /* Load Configuration
@@ -29,37 +31,36 @@ define('ALBUMS_ROOT', dirname(__FILE__) . '/albums/');
 $params = Spyc::YAMLLoad('config.yml');
 
 
-/* Rewrite URLs
+/* Handle URL Request
 ------------------------------------------------ */
-if ($params['nice_urls']) {
-  define('MOD_REWRITE', TRUE);
-} else {
-  define('MOD_REWRITE', FALSE);
+if (array_key_exists('q', $_GET)) {
+  $args = split('/', $_GET['q']);
+  if (isset($args[0])) $params['album'] = $args[0];
 }
 
 
-/* Handle request
+/* Render Content
 ------------------------------------------------ */
-$params = array_merge($params, url_params());
-
-
-if (empty($params['controller'])) {
-  render('index');
-} else if (!empty($params['controller']) && empty($params['action'])) {
-  $params['album_name'] = $params['controller'];
-  $params['album_path'] = 'albums/' . $params['album_name'];
-  foreach($params['sizes'] as $name => $size) {
-    $params[$name.'_path'] = $params['album_path'] . '/' . $name . '/';
-    if (!is_dir($params[$name.'_path'])) {
-      resize_folder($params['album_path'], $params['sizes']);
+if (array_key_exists('album', $params)) {
+  $album_path = ALBUMS_ROOT . $params['album'] . '/';
+  $album_url  = ALBUMS_URL  . $params['album'] . '/';
+  if (is_dir($album_path)) {
+    foreach($params['sizes'] as $name => $size) {
+      if (!is_dir($album_path . $name . '/')) {
+        resize_folder($album_path, $params['sizes']);
+      }
+      $params[$name.'_path'] = $album_url . $name . '/';
     }
+    $params['title'] .= ": ".$params['album'];
+    render('album');
+  } else {
+    $params['flash'] = "Album not found.";
+    render('error');
   }
-  
-  render('album');
-} else if (!empty($params['controller']) && $params['action'] == 'resize') {
-  $album_path = ALBUMS_ROOT . $params['controller'];
-  resize_folder($album_path, $params['sizes']);
+} else {
+  render('index');
 }
+
 
 
 
@@ -71,7 +72,7 @@ function resize_folder($album_path, $sizes) {
   if (is_dir($album_path)) {
     $originals = get_files($album_path);
     foreach($sizes as $name => $size) {
-      $resized_album_path = "$album_path/$name";
+      $resized_album_path = $album_path.$name.'/';
       if (!is_dir($resized_album_path)) mkdir($resized_album_path, 0755);
       foreach($originals as $photo) {
         scale("$album_path/$photo", "$resized_album_path/$photo", $size);

@@ -1,5 +1,5 @@
 <div id="header">
-  <!-- <h2><?php echo $params['controller']; ?></h2> -->
+  <!-- <h2><?php echo $params['album']; ?></h2> -->
   <div id="controls">
     <span class="btn" title="previous image" id="prev"><a onclick="$.galleria.prev(); return false;" href="#">previous</a></span>
     <span class="btn" title="to the albums" id="home"><?php echo l("Home", ""); ?></span>
@@ -15,7 +15,7 @@
   <div id="images">
     <ul class="image_list" id="carousel_list">
       <?php
-      $photos = get_files($params['album_path']);
+      $photos = get_files(ALBUMS_ROOT . '/' . $params['album']);
       $first = true;
       foreach ($photos as $photo) {
         $thumb = '<img src="'.$params['thumb_path'].$photo.'" alt="'.$photo.'" />';

@@ -6,8 +6,8 @@
  
 function scale($source, $target, $size) {
 
-  $width = $size['width'] ? $size['width'] : -1;
-  $height = $size['height'] ? $size['height'] : -1;
+  $width = array_key_exists('width', $size) ? $size['width'] : -1;
+  $height = array_key_exists('height', $size) ? $size['height'] : -1;
 
    if (gd_available()) {
        image_scale($source, $target, $width, $height);

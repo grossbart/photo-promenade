@@ -4,7 +4,7 @@
 	$(document).ready(function(){
 		$('.image_list').addClass('gallery_show'); // adds new class name to maintain degradability
 		$('ul.gallery_show').galleria({
-			history   : true, // activates the history object for bookmarking, back-button etc.
+			history   : false, // activates the history object for bookmarking, back-button etc.
 			clickNext : true, // helper for making the image clickable
 			insert    : '#main_image', // the containing selector for our main image
 			onImage   : function(image,caption,thumb) { // let's add some image effects for demonstration purposes

@@ -13,33 +13,10 @@ function render($layout) {
 
 function yield($name) {
   global $params;
-
-  $content = read_file('layouts/'.$params['layout'].'/'.$name.'.php');
-
-  if ($content) {
-    echo $content;
-  }
+  $content = parse_file(APP_ROOT.'layouts/'.$params['layout'].'/'.$name.'.php', $params);
+  if ($content) echo $content;
 }
 
-
-function url_params() {
-  $params = array('controller' => '', 'action' => '');
-  if (array_key_exists('q', $_GET)) {
-    $args = split('/', $_GET['q']);
-    if (count($args) > 0 && $args[0]) $params['controller'] = $args[0];
-    if (count($args) > 1 && $args[1]) $params['action'] = $args[1];
-  }
-  return $params;
-}
-
-function base_path() {
-  $script_root = $_SERVER['PHP_SELF'];
-  return ereg_replace("index.php", "", $script_root);
-}
-
-function filesystem_base_path() {
-  return $_SERVER['DOCUMENT_ROOT'] . base_path();
-}
 
 function get_folders($path) {
   $folders = array();
@@ -66,12 +43,17 @@ function get_files($path) {
 }
 
 function l($title, $target, $options = array()) {
+  global $params;
   // URL Optionen prüfen
   //if ($request == $target) $options['class'] = 'active';
-  if (MOD_REWRITE) {
-    $options['href'] = base_path() . $target;
+  if ($params['nice_urls']) {
+    $options['href'] = BASE_URL . $target;
   } else {
-    $options['href'] = base_path() . '?q=' . $target;
+    if ($target == '') {
+      $options['href'] = BASE_URL;
+    } else {
+      $options['href'] = BASE_URL . '?q=' . $target;
+    }
   }
 
   // Link ausgeben
@@ -87,10 +69,7 @@ function join_pairs($pairs) {
 }
 
 
-function read_file($filepath) {
-  global $params;
-  $filepath = APP_ROOT . '/' .$filepath;
-
+function parse_file($filepath, $params = array()) {
   if (is_file($filepath)) {
     ob_start();
     include $filepath;

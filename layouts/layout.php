@@ -3,7 +3,7 @@
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<!-- ——————————————————————————————————————————————————————————————————— TITLE -->
-	<title><?php echo $params['title']?> <?php echo $params['controller']?></title>
+	<title><?php echo $params['title']?></title>
 	<!-- ——————————————————————————————————————————————————————————————————— META -->
 	<meta http-equiv="Content-Type"	content="text/html; charset=utf-8"/>
 	<meta http-equiv="Content-Language"	content="de-de" />

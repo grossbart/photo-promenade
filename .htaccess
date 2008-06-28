@@ -1,7 +1,7 @@
 #
 # Apache/PHP settings:
 #
-# Set some options.
+# Set options.
 Options -Indexes
 Options +FollowSymLinks
 
