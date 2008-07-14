@@ -26,7 +26,7 @@ define('BASE_URL', dirname($_SERVER['PHP_SELF']).'/');
 define('ALBUMS_URL', 'albums/');
 
 
-/* Load Configuration
+/* Load Configuration File
 ------------------------------------------------ */
 $params = Spyc::YAMLLoad('config.yml');
 
@@ -45,13 +45,14 @@ if (array_key_exists('album', $params)) {
   $album_path = ALBUMS_ROOT . $params['album'] . '/';
   $album_url  = ALBUMS_URL  . $params['album'] . '/';
   if (is_dir($album_path)) {
-    foreach($params['sizes'] as $name => $size) {
-      if (!is_dir($album_path . $name . '/')) {
-        resize_folder($album_path, $params['sizes']);
+    foreach($params['sizes'] as $size_name => $size_pixels) {
+      if (!is_dir($album_path . $size_name . '/')) {
+        setup_album($album_path, $params['sizes']);
       }
-      $params[$name.'_path'] = $album_url . $name . '/';
+      $params[$size_name.'_path'] = $album_url . $size_name . '/';
     }
-    $params['title'] .= ": ".$params['album'];
+    $params = array_merge($params, Spyc::YAMLLoad($album_path.'info.yml'));
+    $params['title'] .= ": ".$params['album_title'];
     render('album');
   } else {
     $params['flash'] = "Album not found.";

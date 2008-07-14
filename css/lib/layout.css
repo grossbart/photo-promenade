@@ -33,6 +33,11 @@ body					{ background: #FFF;}
 #controls span#home a			{ width: 31px; background-position: -38px 0;}
 #controls span#overview a	{ width: 33px; background-position: -69px 0;}
 #controls span#next a			{ width: 36px; background-position: -102px 0;}
+/* Album
+/////////////////////////////////////////////////////////////////*/
+#description {
+  margin-top: 22px;
+}
 /* jcarousel
 /////////////////////////////////////////////////////////////////*/
 .jcarousel-container {

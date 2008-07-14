@@ -39,6 +39,17 @@ function get_folders($path) {
   return $folders;
 }
 
+function get_images($path) {
+  $all_files = get_files($path);
+  $photos = array();
+  foreach ($all_files as $file) {
+    if (preg_match("/(.*)\.(jpg|jpeg|gif|png)$/", strtolower($file))) {
+      $photos[] = $file;
+    }
+  }
+  return $photos;
+}
+
 function get_files($path) {
   $files = array();
   $dircontents = scandir($path);
@@ -53,8 +64,6 @@ function get_files($path) {
 
 function l($title, $target, $options = array()) {
   global $params;
-  // URL Optionen prüfen
-  //if ($request == $target) $options['class'] = 'active';
   if ($params['nice_urls']) {
     $options['href'] = BASE_URL . $target;
   } else {
@@ -64,8 +73,6 @@ function l($title, $target, $options = array()) {
       $options['href'] = BASE_URL . '?q=' . $target;
     }
   }
-
-  // Link ausgeben
   return '<a '.join_pairs($options).'>'.$title.'</a>';
 }
 
@@ -93,15 +100,32 @@ function parse_file($filepath, $params = array()) {
 
 /* Resizing
 ------------------------------------------------ */
-function resize_folder($album_path, $sizes) {
+function setup_album($album_path, $sizes) {
   global $params;
   if (is_dir($album_path)) {
-    $originals = get_files($album_path);
-    foreach($sizes as $name => $size) {
-      $resized_album_path = $album_path.$name.'/';
+    //--Create configuration file
+    if (!file_exists($album_path."info.yml")) {
+      // There could be more parameters if necessary
+      $info_yaml = Spyc::YAMLDump(array("album_title" => $params['album'],
+                                        "album_description" => ""));
+      if (!$fp = fopen($album_path."info.yml", 'a')) {
+        $params['flash'] = "Album info file could not be created in <code>".$album_path."info.yml</code>.";
+        render('error');
+      }
+      if (!fwrite($fp, $info_yaml)) {
+        $params['flash'] = "Could not write to file <code>".$album_path."info.yml</code>.";
+        render('error');
+      }
+      fclose($fp);
+    }
+
+    //--Resize images
+    $originals = get_images($album_path);
+    foreach($sizes as $size_name => $size_pixels) {
+      $resized_album_path = $album_path.$size_name.'/';
       if (!is_dir($resized_album_path)) mkdir($resized_album_path, 0755);
       foreach($originals as $photo) {
-        scale("$album_path/$photo", "$resized_album_path/$photo", $size);
+        scale("$album_path/$photo", "$resized_album_path/$photo", $size_pixels);
       }
     }
   } else {

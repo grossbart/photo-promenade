@@ -1,5 +1,11 @@
 <?php
 /**
+ * Photo Promenade -- a tiny PHP photo gallery
+ * Image Functions, most from Drupal
+ * @link http://drupal.org
+ * @package PhotoPromenade
+ */
+/**
  *  Helper functions, mainly from Drupal
  *  http://drupal.org
  */

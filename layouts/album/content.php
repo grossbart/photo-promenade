@@ -15,7 +15,7 @@
   <div id="images">
     <ul class="image_list" id="carousel_list">
       <?php
-      $photos = get_files(ALBUMS_ROOT . '/' . $params['album']);
+      $photos = get_images(ALBUMS_ROOT . '/' . $params['album']);
       $first = true;
       foreach ($photos as $photo) {
         $thumb = '<img src="'.$params['thumb_path'].$photo.'" alt="'.$photo.'" />';
@@ -31,3 +31,8 @@
   </div>
 </div>
 
+<?php if ($params['album_description']) :?>
+<div id="description">
+  <p><?php echo $params['album_description']?></p>
+</div>
+<?php endif;?>
