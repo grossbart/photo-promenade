@@ -37,7 +37,10 @@ if (array_key_exists('q', $_GET)) {
   $args = split('/', $_GET['q']);
   if (isset($args[0])) $params['album'] = $args[0];
 }
-
+if (array_key_exists('rss', $_GET)) {
+  $args = split('/', $_GET['rss']);
+  if (isset($args[0])) $params['rss'] = $args[0];
+}
 
 /* Render Content
 ------------------------------------------------ */
@@ -58,6 +61,8 @@ if (array_key_exists('album', $params)) {
     $params['flash'] = "Album not found.";
     render('error');
   }
+} elseif (array_key_exists('rss', $params)) {
+  rss();
 } else {
   render('index');
 }

@@ -20,6 +20,11 @@ function render($layout) {
   }
 }
 
+function rss() {
+  global $params;
+  include_once("layouts/rss.php");
+}
+
 function yield($name) {
   global $params;
   $content = parse_file(APP_ROOT.'layouts/'.$params['layout'].'/'.$name.'.php', $params);
