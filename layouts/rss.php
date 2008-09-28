@@ -17,7 +17,7 @@
 		<image>
 			<url><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'img/photocast_icon.jpg'?></url>
 			<title><?php if ($params['rss']) echo str_replace("%20"," ",$params['rss']); else echo $_SERVER['HTTP_HOST']; ?></title>
-			<link><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'index.php?q='.str_replace(" ","%20",$params['rss'])?></link>
+			<link><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'index.php?rss='.str_replace(" ","%20",$params['rss'])?></link>
 		</image>
 
 	      <?php

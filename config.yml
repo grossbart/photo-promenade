@@ -6,9 +6,9 @@
 # Enter a title and a subtitle for your gallery
 #
 
-title: Photo Promenade
+title: Schubidu
 subtitle: A tiny PHP photo gallery
-author: Peter Gassner, Benjamin Wiederkehr
+author: Peter Gassner, Benjamin Wiederkehr, Carlo Joerges
 
 #
 # Define the desired output sizes.
@@ -30,4 +30,4 @@ sizes:
 # If you have mod-rewrite, you can uncomment this line
 # to get nice URLs.
 
-nice_urls: true
+#nice_urls: true
