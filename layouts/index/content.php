@@ -9,6 +9,10 @@
 	}
 	?>
   <br class="clear"/>
-</ul>
 
-<p>&copy; <a href="http://www.naehrstoff.ch" title="Portfolio of Peter Gassner">Peter Gassner</a> &amp; <a href="http://www.artillery.ch" title="Portfolio of Benjamin Wiederkehr">Benjamin Wiederkehr</a> 2008</p>
+</ul>
+<?php 
+echo '<p>Subscribe feed of all albums as <a href="photo://'. $_SERVER['HTTP_HOST'].BASE_URL.'?rss">iPhoto photocast</a> or <a href="http://'. $_SERVER['HTTP_HOST'].BASE_URL.'?rss">RSS</a>.</p>';
+?>
+
+<p>&copy; <a href="http://www.naehrstoff.ch" title="Portfolio of Peter Gassner">Peter Gassner</a> &amp; <a href="http://www.artillery.ch" title="Portfolio of Benjamin Wiederkehr">Benjamin Wiederkehr</a> &amp; <a href="http://www.minze.org" title="Portfolio of Carlo Joerges">Carlo Joerges</a> 2008</p>

@@ -1,9 +1,9 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'?>
 <rss version="2.0" xmlns:apple-wallpapers="http://www.apple.com/ilife/wallpapers">
 	<channel>
-		<title><?php if ($params['rss']) echo str_replace("%20"," ",$params['rss']); else echo $_SERVER['HTTP_HOST']; ?></title>
+		<title><?php if ($params['title']) echo $params['title'];  elseif ($params['rss']) echo str_replace("%20"," ",$params['rss']); else echo $_SERVER['HTTP_HOST']; ?></title>
 		<link><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'index.php?q='.str_replace(" ","%20",$params['rss'])?></link>
-		<description><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL?></description>
+		<description><?php if ($params['album_description']) echo $params['album_description'];?></description>
 		<?php
 			$last_modified = filemtime(ALBUMS_ROOT . '/'); 
 			$pubdate = '<pubDate>'. date("D, d M Y H:i:s T", $last_modified) . '</pubDate>';
@@ -15,14 +15,14 @@
 		<generator>iPhoto [iLife Publication Framework] (6.0)</generator>
 		<apple-wallpapers:feedVersion>0.9</apple-wallpapers:feedVersion>
 		<image>
-			<url><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'photocast_icon.jpg'?></url>
+			<url><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'img/photocast_icon.jpg'?></url>
 			<title><?php if ($params['rss']) echo str_replace("%20"," ",$params['rss']); else echo $_SERVER['HTTP_HOST']; ?></title>
 			<link><?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'index.php?q='.str_replace(" ","%20",$params['rss'])?></link>
 		</image>
 
 	      <?php
 	      if ($params['rss']) $albums[] = str_replace("%20"," ",$params['rss']); else $albums = get_folders(ALBUMS_ROOT);
-	
+
 			foreach($albums as $album) {
 	
 			if (is_dir(ALBUMS_ROOT . '/' . $album)) $photos = get_images(ALBUMS_ROOT . '/' . $album); else $photos = array();
