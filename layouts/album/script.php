@@ -1,10 +1,15 @@
+<!-- ——————————————————————————————————————————————————————————————————— JS -->
+<script src="js/jquery-1.2.6.min.js"	type="text/javascript"></script>
+<script src="js/jquery.hotkeys.js"	type="text/javascript"></script>
+<script src="js/jquery.jcarousel.pack.js"	type="text/javascript"></script>
 <script src="js/jquery.galleria.js"	type="text/javascript"></script>
 <script type="text/javascript">
 //<![CDATA[
 	$(document).ready(function(){
+		// Galleria Set-Up
 		$('.image_list').addClass('gallery_show'); // adds new class name to maintain degradability
 		$('ul.gallery_show').galleria({
-			history   : false, // activates the history object for bookmarking, back-button etc.
+			history   : true, // activates the history object for bookmarking, back-button etc.
 			clickNext : true, // helper for making the image clickable
 			insert    : '#main_image', // the containing selector for our main image
 			onImage   : function(image,caption,thumb) { // let's add some image effects for demonstration purposes
@@ -35,12 +40,11 @@
 				)
 			}
 		});
+		// Carousel Set-Up
 		jQuery('#carousel_list').jcarousel({
 			scroll: 9,
 			initCallback: mycarousel_initCallback
 		});
-		$.hotkeys.add('left', function(){$.galleria.prev();});
-		$.hotkeys.add('right', function(){$.galleria.next();});
 		$(function() { 
 			//var slideshow = $("gallerytitle");
 			var active = false;
@@ -70,5 +74,8 @@
 				return false;
 			});
 		};
+		// HotKeys Set-Up
+		$.hotkeys.add('left', function(){$.galleria.prev();});
+		$.hotkeys.add('right', function(){$.galleria.next();});
 	//]]>
 </script>
