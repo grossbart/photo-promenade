@@ -11,7 +11,7 @@
 	<meta name="Keywords"	content="_KEYWORDS_" />
 	<meta name="Description"	content="_DESCRIPTION_" />
 	<meta name="Author"	content="<?php echo $params['author']?>" />
-	<meta name="Copyright"	content="<?php //echo date(); ?> " />
+	<meta name="Copyright"	content="<?php echo date('Y'); ?>" />
 	<!-- ——————————————————————————————————————————————————————————————————— FAVICON -->
 	<link rel="shortcut icon"	href="img/favicon.ico"	type="image/x-icon" />
 	<link rel="icon"	href="img/favicon.ico"	type="image/x-icon" />
