@@ -12,6 +12,7 @@
 	<meta name="Description"	content="_DESCRIPTION_" />
 	<meta name="Author"	content="<?php echo $params['author']?>" />
 	<meta name="Copyright"	content="<?php echo date('Y'); ?>" />
+	<link rel="alternate" type="application/rss+xml" title="<?php echo $params['title']?>" href="<?php echo 'http://'. $_SERVER['HTTP_HOST'].BASE_URL.'index.php?rss='.str_replace(" ","%20",$params['album'])?>" />
 	<!-- ——————————————————————————————————————————————————————————————————— FAVICON -->
 	<link rel="shortcut icon"	href="img/favicon.ico"	type="image/x-icon" />
 	<link rel="icon"	href="img/favicon.ico"	type="image/x-icon" />

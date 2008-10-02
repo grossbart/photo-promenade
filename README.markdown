@@ -1,7 +1,7 @@
 ## Background
 
 Photo Promenade aims to be an easy to install and use photo gallery script for PHP. Uploading the photos is done via FTP, but from there on the script takes over and automatically creates the navigation and thumbnails. The layout of the  gallery can be easily adjusted to one's needs via HTML, PHP and CSS.
-
+Photo Promenade provides RSS and Photocast feeds for all and individual albums.
 
 ## Installation
 
@@ -46,3 +46,4 @@ When you visit a newly created album for the first time, an `info.yml` file is c
 
 * Peter Gassner, http://www.naehrstoff.ch
 * Benjamin Wiederkehr, http://www.artillery.ch
+* Carlo Joerges, http://www.minze.org

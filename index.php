@@ -37,7 +37,10 @@ if (array_key_exists('q', $_GET)) {
   $args = split('/', $_GET['q']);
   if (isset($args[0])) $params['album'] = $args[0];
 }
-
+if (array_key_exists('rss', $_GET)) {
+  $args = split('/', $_GET['rss']);
+  if (isset($args[0])) $params['rss'] = $args[0];
+}
 
 /* Render Content
 ------------------------------------------------ */
@@ -57,6 +60,31 @@ if (array_key_exists('album', $params)) {
   } else {
     $params['flash'] = "Album not found.";
     render('error');
+  }
+} elseif (array_key_exists('rss', $params)) {
+
+  if ($params['rss']) {
+  // If album is submitted, use it
+
+  $album_path = ALBUMS_ROOT . str_replace("%20"," ",$params['rss']) . '/';
+  $album_url  = ALBUMS_URL  . str_replace("%20"," ",$params['rss']) . '/';
+  if (is_dir($album_path)) {
+    foreach($params['sizes'] as $size_name => $size_pixels) {
+      if (!is_dir($album_path . $size_name . '/')) {
+        setup_album($album_path, $params['sizes']);
+      }
+      $params[$size_name.'_path'] = $album_url . $size_name . '/';
+    }
+    $params = array_merge($params, Spyc::YAMLLoad($album_path.'info.yml'));
+    $params['title'] = $params['album_title'];
+  	rss();
+  } else {
+    $params['flash'] = "Album not found.";
+    render('error');
+  }
+  } else {
+	// This works for all albums too
+	rss();
   }
 } else {
   render('index');

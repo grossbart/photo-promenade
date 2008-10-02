@@ -8,7 +8,7 @@
 
 title: Photo Promenade
 subtitle: A tiny PHP photo gallery
-author: Peter Gassner, Benjamin Wiederkehr
+author: Peter Gassner, Benjamin Wiederkehr, Carlo Joerges
 
 #
 # Define the desired output sizes.
@@ -27,7 +27,6 @@ sizes:
     height: 80
 
 #
-# If you have mod-rewrite, you can uncomment this line
-# to get nice URLs.
-
-nice_urls: true
+# If you have mod-rewrite, you can
+# uncomment this line to get nice URLs.
+#nice_urls: true

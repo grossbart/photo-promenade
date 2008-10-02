@@ -33,4 +33,8 @@
 <div id="description">
   <p><?php echo $params['album_description']?></p>
 </div>
+
 <?php endif;?>
+<?php 
+echo '<p>Subscribe to this album via <a href="photo://'. $_SERVER['HTTP_HOST'].BASE_URL.'?rss='.$params['album'].'">iPhoto photocast</a> or <a href="http://'. $_SERVER['HTTP_HOST'].BASE_URL.'?rss='.$params['album'].'">RSS</a>.</p>';
+?>
