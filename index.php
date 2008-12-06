@@ -14,6 +14,7 @@
  */
 
 require_once('./system/spyc.php');
+require_once('./system/pclzip.php');
 require_once('./system/image.php');
 require_once('./system/system.php');
 require_once('./system/application.php');

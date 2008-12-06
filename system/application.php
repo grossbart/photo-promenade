@@ -86,8 +86,23 @@ function create_album($id, $sizes) {
       fclose($fp);
     }
 
-    //--Resize images
+
     $originals = get_images(album_dir($id));
+    
+    //--Create ZIP-Archive to download
+    //$zip = new PclZip('archive.zip');
+    foreach($originals as $image) {
+      $images[] = album_dir($id).$image;
+    }
+    
+    $zip = new PclZip(album_dir($id).'archive.zip');
+
+    $test = $zip->create($images, PCLZIP_OPT_REMOVE_ALL_PATH);
+    if ($test == 0) {
+      die ("Error: " . $zip->errorInfo(true));
+    }
+
+    //--Resize images
     foreach($sizes as $size_name => $size_pixels) {
       $resized_album_path = album_dir($id, $size_name);
       if (!is_dir($resized_album_path)) mkdir($resized_album_path, 0755);

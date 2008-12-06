@@ -33,6 +33,8 @@
 </div>
 <?php endif;?>
 
+<p><?php echo link_for_zip("Download ZIP-Archive", $params['album']); ?></p>
+
 <p>Subscribe to this album via <?php echo link_for_iphoto('iPhoto photocast', $params['album']); ?> or <?php echo link_for_rss('RSS', $params['album']); ?>.</p>
 
 

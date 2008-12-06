@@ -13,14 +13,18 @@ function url($path, $is_query = TRUE, $scheme = 'http') {
   return $scheme . '://' . $_SERVER['HTTP_HOST'] . WEB_ROOT . $sep . rawurlencode_sub($path);
 }
 
-function l($title, $target, $options = array()) {
+function l($title, $target, $options = array(), $is_query = TRUE) {
   global $params;
-  $options['href'] = url($target);
+  $options['href'] = url($target, $is_query);
   return '<a '.join_pairs($options).'>'.$title.'</a>';
 }
 
 function link_for_album($album) {
   return l($album, "album/$album");
+}
+
+function link_for_zip($title, $album) {
+  return l($title, "albums/$album/archive.zip", array(), FALSE);
 }
 
 function link_for_iphoto($title, $album = NULL) {
