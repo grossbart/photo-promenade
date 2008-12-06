@@ -6,9 +6,9 @@
 # Enter a title and a subtitle for your gallery
 #
 
-title: Photo Promenade
+title:    Photo Promenade
 subtitle: A tiny PHP photo gallery
-author: Peter Gassner, Benjamin Wiederkehr, Carlo Joerges
+author:   Peter Gassner, Benjamin Wiederkehr, Carlo Joerges
 
 #
 # Define the desired output sizes.
@@ -19,7 +19,6 @@ author: Peter Gassner, Benjamin Wiederkehr, Carlo Joerges
 # Sizes can be specified using either width or height or both.
 # The aspect ratio will be kept.
 #
-
 sizes:
   big:
     height: 480
@@ -27,6 +26,7 @@ sizes:
     height: 80
 
 #
-# If you have mod-rewrite, you can
-# uncomment this line to get nice URLs.
-#nice_urls: true
+# If you have mod-rewrite working, you can
+# set this to true to get nice URLs.
+#
+nice_urls: false

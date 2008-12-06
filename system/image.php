@@ -1,14 +1,15 @@
 <?php
 /**
  * Photo Promenade -- a tiny PHP photo gallery
- * Image Functions, most from Drupal
- * @link http://drupal.org
- * @package PhotoPromenade
+ * 
+ * Helper functions, mainly from Drupal
+ * http://drupal.org
+ *
+ * @author Peter Gassner <peter@naehrstoff.ch>
+ * @copyright Copyright 2008 Peter Gassner
+ * @license http://www.opensource.org/licenses/gpl-3.0.html GPLv3
  */
-/**
- *  Helper functions, mainly from Drupal
- *  http://drupal.org
- */
+
  
 function scale($source, $target, $size) {
 
